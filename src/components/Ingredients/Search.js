@@ -9,8 +9,8 @@ const Search = React.memo(props => {
   const inputSearchRef = useRef();
   useEffect(() => {
     const timer = setTimeout(() => {
-      // to ensure that the prev filter value is same to current value so send request 
-      // to avoid calling sever each time user types a letter
+      /*to ensure that the prev filter value is same to current value so send request 
+       to avoid calling sever each time user types a letter.*/
       if (filter === inputSearchRef.current.value) {
         const query = filter.length === 0 ? '' : `?orderBy="title"&equalTo="${filter}"`;
         fetch('https://react-4f22e.firebaseio.com/ingredients.json' + query).then(
@@ -28,7 +28,8 @@ const Search = React.memo(props => {
         })
       }
     }, 500)
-    // clean up Hook as using timer will create bunch of timer every time change one of useEffect dependience.
+    /* clean up Hook as using timer will create bunch of timer 
+     every time change one of useEffect dependience.*/
     return () => {
       clearTimeout(timer);
     }
